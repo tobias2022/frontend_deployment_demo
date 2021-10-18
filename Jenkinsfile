@@ -16,7 +16,7 @@ pipeline {
             }
         }
             
-        stage('Create Build Artifacts') {
+        stage('Build') {
             steps {
                 sh 'npm run build'
                }
