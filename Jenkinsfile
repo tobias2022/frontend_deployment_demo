@@ -10,6 +10,11 @@ pipeline {
             }
          }
          
+       stage('Test') {
+            steps{
+            sh 'npm run test'
+            }
+        }
             
         stage('Create Build Artifacts') {
             steps {
@@ -17,14 +22,7 @@ pipeline {
                }
         }
         
-      stage('Test') {
-            steps{
-            sh 'npm run test'
-            }
-        }
-            
-         
-          stage('Validate CF syntax') {
+    stage('Validate CF syntax') {
                steps {
                    withAWS(region:'ap-southeast-2', credentials:'aws-credentials') {
                   sh 'aws cloudformation validate-template --template-body file://s3.yml'
